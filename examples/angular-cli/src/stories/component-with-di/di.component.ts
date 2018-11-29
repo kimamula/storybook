@@ -2,6 +2,8 @@ import { Component, Input, InjectionToken, Injector, ElementRef, Inject } from '
 
 export const TEST_TOKEN = new InjectionToken<string>('test');
 
+export const symbol = Symbol('symbol');
+
 @Component({
   selector: 'storybook-di-component',
   templateUrl: './di.component.html',
@@ -10,6 +12,11 @@ export const TEST_TOKEN = new InjectionToken<string>('test');
 export class DiComponent {
   @Input()
   title: string;
+
+  @Input()
+  obj: { [symbol]: string; str: string };
+
+  symbol = symbol;
 
   constructor(
     protected injector: Injector,
